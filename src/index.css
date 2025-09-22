@@ -2,41 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* AI Legal Document Analysis - Sophisticated Design System */
 
 @layer base {
   :root {
+    /* Base Colors */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    --foreground: 216 12% 8%;
+    
+    /* Charcoal Theme */
+    --charcoal: 216 12% 8%;
+    --charcoal-light: 215 14% 12%;
+    --charcoal-lighter: 214 15% 18%;
+    
+    /* Gold Accent */
+    --gold: 45 93% 47%;
+    --gold-light: 45 93% 55%;
+    --gold-dark: 45 93% 35%;
+    --gold-muted: 45 15% 85%;
+    
+    /* Emerald Accent */
+    --emerald: 158 64% 52%;
+    --emerald-light: 158 64% 60%;
+    --emerald-dark: 158 64% 40%;
+    --emerald-muted: 158 15% 85%;
+    
+    /* Semantic Colors */
+    --primary: var(--charcoal);
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: var(--charcoal-light);
+    
+    --secondary: 0 0% 96%;
+    --secondary-foreground: var(--charcoal);
+    --secondary-hover: 0 0% 92%;
+    
+    --accent: var(--gold);
+    --accent-foreground: var(--charcoal);
+    --accent-hover: var(--gold-light);
+    
+    --muted: 0 0% 96%;
+    --muted-foreground: 215 16% 47%;
+    
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --card-foreground: var(--charcoal);
+    
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: var(--gold);
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--charcoal)) 0%, hsl(var(--charcoal-light)) 50%, hsl(var(--gold) / 0.1) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(var(--gold-dark)) 0%, hsl(var(--gold)) 100%);
+    --gradient-emerald: linear-gradient(135deg, hsl(var(--emerald-dark)) 0%, hsl(var(--emerald)) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(0 0% 98%) 100%);
+    
+    /* Shadows */
+    --shadow-soft: 0 2px 8px hsla(var(--charcoal) / 0.1);
+    --shadow-medium: 0 4px 16px hsla(var(--charcoal) / 0.15);
+    --shadow-strong: 0 8px 32px hsla(var(--charcoal) / 0.2);
+    --shadow-gold-glow: 0 0 0 1px hsla(var(--gold) / 0.2), 0 4px 16px hsla(var(--gold) / 0.1);
+    
+    /* Animations */
+    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +131,111 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  
+  /* Typography Scale */
+  .text-display {
+    @apply text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight;
+  }
+  
+  .text-hero {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+  }
+  
+  .text-section-title {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight;
+  }
+  
+  .text-card-title {
+    @apply text-xl md:text-2xl font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  /* Hero Gradient Background */
+  .hero-gradient {
+    background: var(--gradient-hero);
+    position: relative;
+  }
+  
+  .hero-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 20% 50%, hsla(var(--gold) / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsla(var(--emerald) / 0.05) 0%, transparent 50%),
+      linear-gradient(180deg, transparent 0%, hsla(var(--charcoal) / 0.05) 100%);
+    pointer-events: none;
+  }
+  
+  /* Gold Button Variant */
+  .btn-gold {
+    @apply bg-gradient-to-r from-gold-dark to-gold text-charcoal font-semibold px-8 py-4 rounded-xl;
+    @apply hover:from-gold hover:to-gold-light transform hover:scale-105;
+    @apply transition-all duration-300 shadow-lg hover:shadow-gold-glow;
+    @apply focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
+  }
+  
+  /* Emerald Button Variant */
+  .btn-emerald {
+    @apply bg-gradient-to-r from-emerald-dark to-emerald text-white font-semibold px-8 py-4 rounded-xl;
+    @apply hover:from-emerald hover:to-emerald-light transform hover:scale-105;
+    @apply transition-all duration-300 shadow-lg;
+    @apply focus:outline-none focus:ring-2 focus:ring-emerald focus:ring-offset-2;
+  }
+  
+  /* Ghost Button Variant */
+  .btn-ghost {
+    @apply border-2 border-gold text-gold font-semibold px-8 py-4 rounded-xl;
+    @apply hover:bg-gold hover:text-charcoal transform hover:scale-105;
+    @apply transition-all duration-300 backdrop-blur-sm;
+    @apply focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
+  }
+  
+  /* Card Hover Effects */
+  .feature-card {
+    @apply bg-card border border-border rounded-2xl p-8 h-full;
+    @apply hover:shadow-medium hover:-translate-y-1 transition-all duration-300;
+    @apply cursor-pointer;
+  }
+  
+  /* Legal Pattern Background */
+  .legal-pattern {
+    background-image: 
+      radial-gradient(circle at 25% 25%, hsla(var(--gold) / 0.03) 0%, transparent 25%),
+      linear-gradient(45deg, transparent 49%, hsla(var(--border) / 0.5) 49%, hsla(var(--border) / 0.5) 51%, transparent 51%),
+      linear-gradient(-45deg, transparent 49%, hsla(var(--border) / 0.3) 49%, hsla(var(--border) / 0.3) 51%, transparent 51%);
+    background-size: 120px 120px, 40px 40px, 40px 40px;
+  }
+  
+  /* Animated Underline */
+  .animated-underline {
+    @apply relative;
+  }
+  
+  .animated-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-gold);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+  
+  .animated-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  
+  /* Smooth Scroll */
+  html {
+    scroll-behavior: smooth;
   }
 }

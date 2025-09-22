@@ -19,13 +19,35 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        
+        /* AI Legal Theme Colors */
+        charcoal: {
+          DEFAULT: "hsl(var(--charcoal))",
+          light: "hsl(var(--charcoal-light))",
+          lighter: "hsl(var(--charcoal-lighter))",
+        },
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          light: "hsl(var(--gold-light))",
+          dark: "hsl(var(--gold-dark))",
+          muted: "hsl(var(--gold-muted))",
+        },
+        emerald: {
+          DEFAULT: "hsl(var(--emerald))",
+          light: "hsl(var(--emerald-light))",
+          dark: "hsl(var(--emerald-dark))",
+          muted: "hsl(var(--emerald-muted))",
+        },
+        
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          hover: "hsl(var(--primary-hover))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+          hover: "hsl(var(--secondary-hover))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -38,6 +60,7 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          hover: "hsl(var(--accent-hover))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -58,6 +81,32 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
       },
+      
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      
+      backgroundImage: {
+        'gradient-hero': 'var(--gradient-hero)',
+        'gradient-gold': 'var(--gradient-gold)', 
+        'gradient-emerald': 'var(--gradient-emerald)',
+        'gradient-subtle': 'var(--gradient-subtle)',
+      },
+      
+      boxShadow: {
+        'soft': 'var(--shadow-soft)',
+        'medium': 'var(--shadow-medium)', 
+        'strong': 'var(--shadow-strong)',
+        'gold-glow': 'var(--shadow-gold-glow)',
+      },
+      
+      transitionProperty: {
+        'fast': 'var(--transition-fast)',
+        'smooth': 'var(--transition-smooth)',
+        'bounce': 'var(--transition-bounce)',
+      },
+      
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -65,25 +114,37 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "fade-in": {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "slide-in-left": {
+          "0%": { opacity: "0", transform: "translateX(-50px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        "scale-in": {
+          "0%": { opacity: "0", transform: "scale(0.95)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        "glow-pulse": {
+          "0%, 100%": { boxShadow: "0 0 20px hsla(var(--gold) / 0.1)" },
+          "50%": { boxShadow: "0 0 40px hsla(var(--gold) / 0.2)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out", 
+        "fade-in": "fade-in 0.6s ease-out",
+        "slide-in-left": "slide-in-left 0.6s ease-out",
+        "scale-in": "scale-in 0.4s ease-out",
+        "glow-pulse": "glow-pulse 2s ease-in-out infinite",
       },
     },
   },
